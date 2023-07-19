@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kredi Risk Tahmini</title>
+    <style>
+        /* Bilgi kutusu stilini ayarla */
+        .info-tooltip {
+            position: relative;
+            display: inline-block;
+            border-bottom: 1px dotted black;
+        }
+
+        /* Bilgi kutusunu gizle */
+        .info-tooltip .info-text {
+            visibility: hidden;
+            width: 300px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* Konumunu ayarla */
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Yerini gösteren metinin üzerine yerleştir */
+            left: 50%;
+            margin-left: -150px;
+
+            /* Fade-in efekti */
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Bilgi kutusu üzerine gelindiğinde metni göster */
+        .info-tooltip:hover .info-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+<h1>{{ prediction_text }}</h1>
+<div class="info-tooltip">
+    Bilgi
+    <div class="info-text">
+        <p>{{ contribution_message }}</p>
+        {% for contribution in contributions %}
+            <p>{{ contribution }}</p>
+        {% endfor %}
+    </div>
+</div>
+</body>
+</html>
